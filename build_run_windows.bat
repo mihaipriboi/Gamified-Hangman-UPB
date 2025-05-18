@@ -8,7 +8,7 @@ set OBJDIR=build
 set BINARY=%OBJDIR%\hangman.exe
 
 REM === flaguri pentru compilare si linkare (MinGW) ===
-set CFLAGS=-Wall -Wextra -Werror -Iinclude -D__USE_MINGW_ANSI_STDIO=1
+set CFLAGS=-Wall -Wextra -Werror -Iinclude -D__USE_MINGW_ANSI_STDIO=1 -Dsetjmp=_setjmp
 set LDFLAGS=-Llib\windows\mingw -lSDL2 -lSDL2_ttf -lm ^
   -lwinmm -lole32 -loleaut32 -luuid -lgdi32 -limm32 -lversion ^
   -lsetupapi -lcfgmgr32 -lrpcrt4
