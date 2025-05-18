@@ -1,0 +1,8 @@
+# Fisiere VSCode
+.vscode/
+
+# Fisiere de build
+/build/
+hangman
+*.o
+*.out
