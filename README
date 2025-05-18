@@ -1,0 +1,41 @@
+gamified-hangman
+================
+
+Joc tip Hangman, scris in C, utilizand bibliotecile SDL2 si SDL2_ttf.
+Proiect realizat de o echipa de 6 studenti in cadrul cursului Programarea Algoritmilor
+la Universitatea Politehnica din Bucuresti, Facultatea de Automatica si Calculatoare.
+
+Instructiuni de compilare
+--------------------------
+
+Linux / macOS:
+  make
+  make run
+
+Windows (MinGW sau MSYS2):
+  build_run_windows.bat
+
+Dependinte
+----------
+
+- compilator GCC
+- make
+- SDL2 si SDL2_ttf (incluse in directorul lib/ pentru toate platformele)
+
+Structura proiectului
+----------------------
+
+  main.c                    Codul sursa principal
+  Makefile                  Script de compilare pentru Linux/macOS
+  build_run_windows.bat     Script pentru compilare si rulare pe Windows
+  include/                  Fisiere header SDL2
+  lib/                      Biblioteci SDL2/SDL2_ttf precompilate
+  assets/                   Imagini pentru joc
+  data/                     Fisiere cu intrebari
+  build/                    Executabilul rezultat
+
+Note
+----
+
+Nu este necesara instalarea bibliotecilor din sistem.
+Toate fisierele necesare sunt incluse in directorul lib/ pentru fiecare platforma.

@@ -1,25 +1,38 @@
 # compilator
 CC = gcc
 
-# flags
+# flaguri de compilare
 CFLAGS = -Wall -Wextra -Werror -Iinclude
-LDFLAGS = -Llib -lSDL2 -lSDL2_ttf
+OBJDIR = build
+BINARY = $(OBJDIR)/hangman
 
-# fisiere
-SRC = main.c
-TARGET = hangman
+# determinare OS
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Linux)
+  LIBDIR = lib/linux
+  LDFLAGS = -L$(LIBDIR) -lSDL2 -lSDL2_ttf
+  RUN_CMD = LD_LIBRARY_PATH=$(LIBDIR) ./$(BINARY)
+endif
+
+ifeq ($(UNAME), Darwin)
+  LIBDIR = lib/macos
+  LDFLAGS = $(LIBDIR)/libSDL2.dylib $(LIBDIR)/libSDL2_ttf.dylib
+  RUN_CMD = DYLD_LIBRARY_PATH=$(LIBDIR) ./$(BINARY)
+endif
 
 # target default
-all: $(TARGET)
+all: $(BINARY)
 
 # compilare
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET) $(LDFLAGS)
+$(BINARY): main.c
+	mkdir -p $(OBJDIR)
+	$(CC) $(CFLAGS) main.c -o $(BINARY) $(LDFLAGS)
 
-# adaugare librarii
-run: $(TARGET)
-	LD_LIBRARY_PATH=lib ./$(TARGET)
+# executabil
+run: $(BINARY)
+	$(RUN_CMD)
 
 # curatare
 clean:
-	rm -f $(TARGET)
+	rm -rf $(OBJDIR)
