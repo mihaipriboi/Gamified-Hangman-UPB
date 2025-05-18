@@ -7,9 +7,9 @@ set SRCDIR=src
 set OBJDIR=build
 set BINARY=%OBJDIR%\hangman.exe
 
-REM === flaguri pentru compilare si linkare ===
+REM === flaguri pentru compilare si linkare (MinGW) ===
 set CFLAGS=-Wall -Wextra -Werror -Iinclude
-set LDFLAGS=-Llib\windows -lSDL2 -lSDL2_ttf -lm
+set LDFLAGS=-Llib\windows\mingw -lSDL2 -lSDL2main -lSDL2_ttf -lm
 
 REM === creeaza directorul de build daca nu exista ===
 if not exist %OBJDIR% (
@@ -38,8 +38,8 @@ if not exist %BINARY% (
 )
 
 REM === copiere fisiere DLL necesare ===
-copy /Y lib\windows\SDL2.dll %OBJDIR%\ >nul
-copy /Y lib\windows\SDL2_ttf.dll %OBJDIR%\ >nul
+copy /Y lib\windows\mingw\SDL2.dll %OBJDIR%\ >nul
+copy /Y lib\windows\mingw\SDL2_ttf.dll %OBJDIR%\ >nul
 
 REM === rulare executabil ===
 echo Rulare...
