@@ -1,22 +1,30 @@
 @echo off
-REM === Compiler, folders and files ===
+setlocal enabledelayedexpansion
+
+REM === compilator, directoare si fisiere ===
 set CC=gcc
 set SRCDIR=src
 set OBJDIR=build
 set BINARY=%OBJDIR%\hangman.exe
 
-REM === Includes and libs ===
+REM === flaguri pentru compilare si linkare ===
 set CFLAGS=-Wall -Wextra -Werror -Iinclude
-set LDFLAGS=-Llib\windows -lSDL2 -lSDL2_ttf -lmingw32 -lm
+set LDFLAGS=-Llib\windows -lSDL2 -lSDL2_ttf -lm
 
-REM === Create build dir if not exists ===
+REM === creeaza directorul de build daca nu exista ===
 if not exist %OBJDIR% (
     mkdir %OBJDIR%
 )
 
-REM === Compile ===
-echo Compiling...
-%CC% %CFLAGS% %SRCDIR%\*.c -o %BINARY% %LDFLAGS%
+REM === adauga fisierele sursa ===
+set FILES=
+for %%f in (%SRCDIR%\*.c) do (
+    set FILES=!FILES! %%f
+)
+
+REM === compilare ===
+echo Compilare in curs...
+%CC% %CFLAGS% !FILES! -o %BINARY% %LDFLAGS%
 if errorlevel 1 (
     echo Eroare la compilare!
     pause
@@ -24,17 +32,17 @@ if errorlevel 1 (
 )
 
 if not exist %BINARY% (
-    echo Compilation failed: binary not found.
+    echo Executabilul nu a fost creat!
     pause
     exit /b 1
 )
 
-REM === Copy DLLs ===
+REM === copiere fisiere DLL necesare ===
 copy /Y lib\windows\SDL2.dll %OBJDIR%\ >nul
 copy /Y lib\windows\SDL2_ttf.dll %OBJDIR%\ >nul
 
-REM === Run ===
-echo Running...
+REM === rulare executabil ===
+echo Rulare...
 cd %OBJDIR%
 hangman.exe
 echo.
