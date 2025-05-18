@@ -1,0 +1,136 @@
+{
+  "questions": [
+    {
+      "hint": "Format digital care include text, imagine, audio sau video",
+      "answer": "continut"
+    },
+    {
+      "hint": "Lege care protejeaza drepturile autorilor asupra operelor digitale",
+      "answer": "copyright"
+    },
+    {
+      "hint": "Calitatea continutului digital trebuie sa fie __ pentru a fi eficient",
+      "answer": "ridicata"
+    },
+    {
+      "hint": "Platforma folosita pentru retele sociale, colaborare sau educatie",
+      "answer": "deschisa"
+    },
+    {
+      "hint": "Software utilizat pentru realizarea CV-urilor si portofoliilor",
+      "answer": "profesional"
+    },
+    {
+      "hint": "Este important sa iti cunosti __ atunci cand creezi continut",
+      "answer": "audienta"
+    },
+    {
+      "hint": "Procesul de publicare a continutului pentru a atrage atentia publicului",
+      "answer": "promovare"
+    },
+    {
+      "hint": "Dispozitiv pe care se creeaza si se acceseaza continut personal",
+      "answer": "smartphone"
+    },
+    {
+      "hint": "Tip de platforma pentru comunicare cu prieteni si familie",
+      "answer": "personala"
+    },
+    {
+      "hint": "Platformele deschise incurajeaza __ si colaborarea",
+      "answer": "partajarea"
+    },
+    {
+      "hint": "Lege care optimizeaza aparitia unui site in cautarile online",
+      "answer": "seo"
+    },
+    {
+      "hint": "Procesul de testare a doua versiuni ale aceluiasi continut",
+      "answer": "abtesting"
+    },
+    {
+      "hint": "Instrument care analizeaza traficul si comportamentul utilizatorilor",
+      "answer": "analytics"
+    },
+    {
+      "hint": "Format universal recomandat pentru distribuirea fisierelor",
+      "answer": "pdf"
+    },
+    {
+      "hint": "Tip de continut ce include imagini, video sau audio",
+      "answer": "multimedia"
+    },
+    {
+      "hint": "Stocare centralizata accesibila de pe orice dispozitiv",
+      "answer": "cloud"
+    },
+    {
+      "hint": "Actiunea de a publica continut pe mai multe platforme",
+      "answer": "integrare"
+    },
+    {
+      "hint": "Cuvinte-cheie folosite pentru a imbunatati vizibilitatea",
+      "answer": "keywords"
+    },
+    {
+      "hint": "Unitati de masura pentru succesul continutului digital",
+      "answer": "kpi"
+    },
+    {
+      "hint": "Software care permite planificarea postarilor online",
+      "answer": "scheduler"
+    },
+    {
+      "hint": "Pachet de software pentru creatie grafica si editare digitala",
+      "answer": "adobe"
+    },
+    {
+      "hint": "Procesul de adaptare a continutului pentru toate platformele",
+      "answer": "optimizare"
+    },
+    {
+      "hint": "Serviciu de stocare online pentru fisiere si colaborare",
+      "answer": "cloud"
+    },
+    {
+      "hint": "Principiu de design care asigura afisare corecta pe toate dispozitivele",
+      "answer": "responsive"
+    },
+    {
+      "hint": "Format universal de continut folosit pentru pagini web",
+      "answer": "html"
+    },
+    {
+      "hint": "Aplicatie pentru editare de documente, tabele si prezentari",
+      "answer": "office"
+    },
+    {
+      "hint": "Set de aplicatii cloud de la Google pentru lucru colaborativ",
+      "answer": "workspace"
+    },
+    {
+      "hint": "Actiunea de a programa automat postarile pe retele sociale",
+      "answer": "scheduler"
+    },
+    {
+      "hint": "Calitatea continutului care il face diferit si autentic",
+      "answer": "originalitate"
+    },
+    {
+      "hint": "Procesul de a crea idei noi si unice in continut digital",
+      "answer": "inovatie"
+    },
+    {
+      "hint": "La ce aspect trebuie sa fim atenti atunci cand partajam continut digital?",
+      "answer": "confidentialitate"
+    },
+    {
+      "hint": "Cum trebuie sa fie continutul digital pentru a fi usor de inteles?",
+      "answer": "lizibil"
+    },
+    {
+      "hint": "Este bine sa cream continut in forme universale. Pentru poze acesta este",
+      "answer": "jpeg"
+    }
+  ]
+}

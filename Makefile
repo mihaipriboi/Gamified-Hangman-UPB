@@ -4,7 +4,14 @@ CC = gcc
 # flaguri de compilare
 CFLAGS = -Wall -Wextra -Werror -Iinclude
 OBJDIR = build
+SRCDIR = src
 BINARY = $(OBJDIR)/hangman
+
+# sursa
+SRC = $(wildcard $(SRCDIR)/*.c)
+
+# headere
+HEADERS = $(wildcard include/*.h)
 
 # determinare OS
 UNAME := $(shell uname)
@@ -25,9 +32,9 @@ endif
 all: $(BINARY)
 
 # compilare
-$(BINARY): main.c
+$(BINARY): $(SRC) $(HEADERS)
 	mkdir -p $(OBJDIR)
-	$(CC) $(CFLAGS) main.c -o $(BINARY) $(LDFLAGS)
+	$(CC) $(CFLAGS) $(SRC) -o $(BINARY) $(LDFLAGS)
 
 # executabil
 run: $(BINARY)

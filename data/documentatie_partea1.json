@@ -1,0 +1,44 @@
+{
+  "documentation": [
+    {
+      "title": "SEO",
+      "text": "SEO (Search Engine Optimization) este un proces prin care un site este optimizat astfel incat sa apara cat mai sus in rezultatele motoarelor de cautare (precum Google). Acesta include aspecte tehnice, structura, continut de calitate si utilizarea de cuvinte-cheie relevante."
+    },
+    {
+      "title": "Continut multimedia",
+      "text": "Continutul multimedia este esential in paginile web moderne. Acesta include imagini, videoclipuri, animatii si fisiere audio care imbunatatesc experienta utilizatorului si pot contribui la o mai buna intelegere a informatiilor prezentate."
+    },
+    {
+      "title": "Platforme colaborative",
+      "text": "Platformele colaborative precum GitHub permit dezvoltatorilor sa lucreze impreuna la proiecte software. Ele ofera control al versiunilor, urmarirea erorilor, documentatie si unelte de colaborare esentiale in dezvoltarea moderna."
+    },
+    {
+      "title": "Analiza traficului web",
+      "text": "Analiza traficului web este realizata cu ajutorul unor unelte precum Google Analytics. Acestea colecteaza si prezinta date despre numarul de vizitatori, durata sesiunilor, sursele de trafic si comportamentul utilizatorilor."
+    },
+    {
+      "title": "Formate standardizate de fisiere",
+      "text": "Formatele standardizate de fisiere, cum ar fi PDF (Portable Document Format), asigura compatibilitatea intre diverse sisteme si sunt utilizate frecvent pentru partajarea de documente care nu trebuie modificate."
+    },
+    {
+      "title": "Hyperlink",
+      "text": "Hyperlinkurile sunt legaturi care conecteaza o resursa web cu alta. Ele pot fi interne (in cadrul aceluiasi site) sau externe, si sunt elemente-cheie pentru navigarea web."
+    },
+    {
+      "title": "site responsiv",
+      "text": "Un site responsiv este capabil sa se adapteze automat la dimensiunea ecranului, fie ca este vorba despre un desktop, tableta sau telefon. Designul responsiv este esential pentru accesibilitate si optimizare SEO."
+    },
+    {
+      "title": "HTML",
+      "text": "HTML (Hypertext Markup Language) este limbajul de baza al paginilor web. Structura unui site porneste de la HTML, in timp ce CSS si JavaScript contribuie la stilizare si functionalitate."
+    },
+    {
+      "title": "Elemente interactive",
+      "text": "Elementele interactive (formulare, butoane, animatii) sunt utilizate pentru a implica utilizatorii in experienta digitala si a colecta date utile."
+    },
+    {
+      "title": "Accesibilitate web",
+      "text": "Accesibilitatea web se refera la designul si dezvoltarea site-urilor astfel incat sa poata fi utilizate de persoane cu diverse dizabilitati, respectand standarde precum WCAG (Web Content Accessibility Guidelines)."
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "questions": [
+    {
+      "hint": "Reprezentarea grafica a informatiilor pentru a fi usor de inteles",
+      "answer": "vizualizare"
+    },
+    {
+      "hint": "Procesul de curatare si transformare a datelor",
+      "answer": "manipulare"
+    },
+    {
+      "hint": "Oferirea creditului sursei originale a datelor",
+      "answer": "atribuire"
+    },
+    {
+      "hint": "Studiul privind folosirea corecta si sigura a datelor",
+      "answer": "etica"
+    },
+    {
+      "hint": "Instrument popular de creare a graficelor si diagramelor",
+      "answer": "excel"
+    },
+    {
+      "hint": "Pachet software pentru vizualizari avansate in R",
+      "answer": "ggplot"
+    },
+    {
+      "hint": "Actiunea de a elimina inregistrarile duplicate dintr-un set",
+      "answer": "curatare"
+    },
+    {
+      "hint": "Optiune Excel pentru a imparti textul in coloane separate",
+      "answer": "texttocolumns"
+    },
+    {
+      "hint": "Informatia ce trebuie sa fie actualizata si fara erori",
+      "answer": "acuratete"
+    },
+    {
+      "hint": "Folosirea datelor doar cu permisiunea persoanei vizate",
+      "answer": "consimtamant"
+    },
+    {
+      "hint": "Tehnica de corectare a erorilor si inconsistenta din date",
+      "answer": "cleaning"
+    },
+    {
+      "hint": "Conversia datelor in alt format sau structura",
+      "answer": "transforming"
+    },
+    {
+      "hint": "Combinarea datelor in grupuri mai generale",
+      "answer": "aggregating"
+    },
+    {
+      "hint": "Alaturarea mai multor surse de date intr-un set unitar",
+      "answer": "merging"
+    },
+    {
+      "hint": "Instrument folosit pentru manipularea datelor tabelare",
+      "answer": "excel"
+    },
+    {
+      "hint": "Criteriu ce asigura ca datele sunt mereu actuale si corecte",
+      "answer": "acuratete"
+    },
+    {
+      "hint": "Evaluarea gradului de includere a tuturor datelor relevante",
+      "answer": "completitudine"
+    },
+    {
+      "hint": "Masura in care procesul este realizat rapid si corect",
+      "answer": "eficienta"
+    },
+    {
+      "hint": "Documentarea clara si concisa a prelucrarii datelor",
+      "answer": "transparenta"
+    },
+    {
+      "hint": "Tehnica prin care afisezi doar randurile relevante",
+      "answer": "filtrare"
+    },
+    {
+      "hint": "Vizualizare care permite interactiunea si explorarea datelor",
+      "answer": "interactive"
+    },
+    {
+      "hint": "Folosirea graficelor pentru a spune o poveste convingatoare",
+      "answer": "storytelling"
+    },
+    {
+      "hint": "Afisaj interactiv care arata indicatori cheie si tendinte",
+      "answer": "dashboard"
+    },
+    {
+      "hint": "Procesul de corectare a erorilor si inconsistenta din date",
+      "answer": "cleaning"
+    },
+    {
+      "hint": "Transformarea datelor pentru analiza sau vizualizare",
+      "answer": "wrangling"
+    },
+    {
+      "hint": "Transformari complexe ale datelor pentru modele avansate",
+      "answer": "munging"
+    },
+    {
+      "hint": "Tehnica de a da credit surselor utilizate",
+      "answer": "atribuire"
+    },
+    {
+      "hint": "Pachet software folosit pentru vizualizari interactive in R",
+      "answer": "ggplot"
+    },
+    {
+      "hint": "Caracteristica ce indica o sursa de date de incredere",
+      "answer": "transparenta"
+    },
+    {
+      "hint": "Platforma comuna pentru vizualizare si analiza a datelor",
+      "answer": "excel"
+    },
+    {
+      "hint": "Care este primul pas in procesul de manipulare al informatiilor?",
+      "answer": "dataset"
+    }
+  ]
+}

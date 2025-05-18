@@ -1,0 +1,115 @@
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <stdbool.h>
+
+#include "game.h"
+#include "style.h"
+#include "ui.h"
+#include "types.h"
+#include "utils.h"
+#include "list.h"
+
+void joc_pe_nivel(SDL_Renderer* renderer, TTF_Font* font, AbsoluteSize win_size, Nod* nivel, StareJoc* stare) {
+  bool guessed[26] = {false};
+  int gresite = 0;
+  char display[128];
+
+  SDL_StartTextInput();
+  update_display_word(nivel->answer, guessed, display);
+  SDL_Event event;
+  bool in_nivel = true;
+  bool corect = false;
+  bool pierdut = false;
+
+  Buton next_btn = {get_scaled_rect(win_size, (RelativeRect){0.05f, 0.85f, 0.3f, 0.08f}), "Nivelul urmator"};
+  Buton retry_btn = {get_scaled_rect(win_size, (RelativeRect){0.05f, 0.85f, 0.25f, 0.08f}), "Reincearca"};
+  Buton menu_btn  = {get_scaled_rect(win_size, (RelativeRect){0.35f, 0.85f, 0.3f, 0.08f}), "Inapoi la meniu"};
+
+  while (in_nivel) {
+      int mouse_x, mouse_y;
+      SDL_GetMouseState(&mouse_x, &mouse_y);
+
+      while (SDL_PollEvent(&event)) {
+          if (event.type == SDL_QUIT) {
+              *stare = IESIRE;
+              return;
+          }
+          if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE) {
+              *stare = MENIU;
+              return;
+          }
+          if (!corect && !pierdut && event.type == SDL_TEXTINPUT) {
+              char litera = tolower(event.text.text[0]);
+              if (isalpha(litera)) {
+                  int index = litera - 'a';
+                  if (!guessed[index]) {
+                      guessed[index] = true;
+                      if (!strchr(nivel->answer, litera)) {
+                          gresite++;
+                      }
+                      update_display_word(nivel->answer, guessed, display);
+                  }
+              }
+          }
+          if (corect && event.type == SDL_MOUSEBUTTONDOWN) {
+              if (mouse_over(next_btn.rect, mouse_x, mouse_y)) {
+                  in_nivel = false;
+              }
+          }
+          if (pierdut && event.type == SDL_MOUSEBUTTONDOWN) {
+              if (mouse_over(retry_btn.rect, mouse_x, mouse_y)) {
+                  gresite = 0;
+                  memset(guessed, 0, sizeof(guessed));
+                  update_display_word(nivel->answer, guessed, display);
+                  pierdut = false;
+              }
+              if (mouse_over(menu_btn.rect, mouse_x, mouse_y)) {
+                  *stare = MENIU;
+                  return;
+              }
+          }
+      }
+
+      set_render_color(renderer, COLOR_BACKGROUND);
+      SDL_RenderClear(renderer);
+
+      render_text(renderer, font, "Hint:", win_size.w * 0.05f, win_size.h * 0.05f, COLOR_TEXT);
+      render_text(renderer, font, nivel->hint, win_size.w * 0.05f, win_size.h * 0.1f, COLOR_TEXT);
+
+      char path[64];
+      if (gresite < MAX_GRESITE) {
+          snprintf(path, sizeof(path), "assets/images/hangman_%d.bmp", gresite);
+      } else {
+          snprintf(path, sizeof(path), "assets/images/game_over.bmp");
+      }
+
+      SDL_Surface* image = SDL_LoadBMP(path);
+      if (image) {
+          SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
+          SDL_FreeSurface(image);
+          SDL_Rect imgRect = get_scaled_rect(win_size, (RelativeRect){0.35f, 0.2f, 0.3f, 0.3f});
+          SDL_RenderCopy(renderer, texture, NULL, &imgRect);
+          SDL_DestroyTexture(texture);
+      }
+
+      render_text(renderer, font, display, win_size.w * 0.05f, win_size.h * 0.7f, COLOR_TEXT);
+
+      if (is_word_guessed(nivel->answer, display)) {
+          corect = true;
+          render_text(renderer, font, "Corect!", win_size.w * 0.05f, win_size.h * 0.8f, COLOR_TEXT);
+          bool hover = mouse_over(next_btn.rect, mouse_x, mouse_y);
+          render_button(renderer, font, next_btn, hover);
+      } else if (gresite >= MAX_GRESITE) {
+          pierdut = true;
+          render_text(renderer, font, "Ai pierdut nivelul.", win_size.w * 0.05f, win_size.h * 0.8f, COLOR_TEXT);
+          bool hover1 = mouse_over(retry_btn.rect, mouse_x, mouse_y);
+          bool hover2 = mouse_over(menu_btn.rect, mouse_x, mouse_y);
+          render_button(renderer, font, retry_btn, hover1);
+          render_button(renderer, font, menu_btn, hover2);
+      }
+
+      SDL_RenderPresent(renderer);
+  }
+
+  SDL_StopTextInput();
+}

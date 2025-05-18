@@ -1,0 +1,44 @@
+{
+  "documentation": [
+    {
+      "title": "Analiza datelor",
+      "text": "Analiza datelor este procesul de examinare, curatare, transformare si modelare a datelor pentru a descoperi informatii utile, a sprijini decizii si a sustine concluzii."
+    },
+    {
+      "title": "Data Cleaning",
+      "text": "Curatarea datelor (Data Cleaning) presupune identificarea si corectarea valorilor lipsa, incorecte sau redundante dintr-un set de date, pentru a asigura integritatea analizelor ulterioare."
+    },
+    {
+      "title": "Data Merging",
+      "text": "Combinarea datelor (Data Merging) este procesul de integrare a mai multor surse de date intr-o singura structura coerenta. Este esentiala pentru analize complete atunci cand datele provin din fisiere diferite."
+    },
+    {
+      "title": "Reprezentarea grafica a datelo",
+      "text": "Reprezentarea grafica a datelor se face prin grafice, tabele sau infografice. Scopul este de a vizualiza relatii, tipare sau tendinte care pot fi greu de observat in forma bruta a datelor."
+    },
+    {
+      "title": "Date structurate",
+      "text": "Datele structurate sunt cele organizate in randuri si coloane, precum cele din fisiere CSV, tabele Excel sau baze de date relationale. Sunt usor de analizat cu ajutorul software-ului de procesare a datelor."
+    },
+    {
+      "title": "Date nestructurate",
+      "text": "Datele nestructurate includ text liber, imagini, inregistrari audio/video, fiind mai dificil de procesat automat."
+    },
+    {
+      "title": "EDA",
+      "text": "Analiza exploratorie (Exploratory Data Analysis - EDA) este etapa in care se investigheaza datele pentru a intelege structura, detecta anomalii si formula ipoteze preliminare."
+    },
+    {
+      "title": "Corelatia intre variabile",
+      "text": "Corelatia intre variabile exprima cat de stransa este relatia intre doua seturi de date. Este adesea cuantificata prin coeficientul Pearson."
+    },
+    {
+      "title": "Prelucrarea datelor",
+      "text": "Prelucrarea datelor presupune transformarea acestora prin tehnici precum normalizare, agregare sau codificare, astfel incat sa fie pregatite pentru modele statistice sau algoritmi de machine learning."
+    },
+    {
+      "title": "Etica",
+      "text": "Etica in analiza datelor implica respectarea confidentialitatii, transparenta algoritmilor si evitarea discriminarii sau manipularii prin interpretari eronate ale rezultatelor."
+    }
+  ]
+}
