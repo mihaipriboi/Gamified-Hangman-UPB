@@ -9,7 +9,8 @@ set BINARY=%OBJDIR%\hangman.exe
 
 REM === flaguri pentru compilare si linkare (MinGW) ===
 set CFLAGS=-Wall -Wextra -Werror -Iinclude
-set LDFLAGS=-Llib\windows\mingw -lSDL2 -lSDL2main -lSDL2_ttf -lm
+set LDFLAGS=-Llib\windows\mingw -lSDL2 -lSDL2_ttf -lm ^
+  -lwinmm -lole32 -luuid -lgdi32 -limm32 -lversion -lshlwapi
 
 REM === creeaza directorul de build daca nu exista ===
 if not exist %OBJDIR% (
