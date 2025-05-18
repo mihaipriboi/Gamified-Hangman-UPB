@@ -18,7 +18,7 @@ UNAME := $(shell uname)
 
 ifeq ($(UNAME), Linux)
   LIBDIR = lib/linux
-  LDFLAGS = -L$(LIBDIR) -lSDL2 -lSDL2_ttf
+  LDFLAGS = -L$(LIBDIR) -lSDL2 -lSDL2_ttf -lm
   RUN_CMD = LD_LIBRARY_PATH=$(LIBDIR) ./$(BINARY)
 endif
 
