@@ -13,7 +13,7 @@
 
 TTF_Font *fonts[FONT_VARIANTS + FONT_TITLE_VARIANTS];
 
-const int font_sizes[FONT_VARIANTS + FONT_TITLE_VARIANTS] = {12, 16, 20, 24, 28, 32, 36, 40};
+const int font_sizes[FONT_VARIANTS + FONT_TITLE_VARIANTS] = {12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56};
 
 void loadFonts() {
     for(int i = 0; i < FONT_VARIANTS + FONT_TITLE_VARIANTS; i++) {
@@ -34,33 +34,33 @@ void unloadFonts() {
 }
 
 TTF_Font* getFontForWindow(AbsoluteSize win_size) {
-    float base_w = 1280.0;
-    float base_h = 720.0;
-    float scale_x = win_size.w / base_w;
-    float scale_y = win_size.h / base_h;
-    float scale = (scale_x + scale_y) / 2.0;
-
-    int index = (int)(scale * FONT_VARIANTS / 2.0);
-    if(index < 0) index = 0;
-    if(index >= FONT_VARIANTS) index = FONT_VARIANTS - 1;
-
-    return fonts[index];
-}
-
-TTF_Font* getFontForWindowTitle(AbsoluteSize win_size) {
-  float base_w = 1280.0;
-  float base_h = 720.0;
+  float base_w = 1920.0f;
+  float base_h = 1080.0f;
   float scale_x = win_size.w / base_w;
   float scale_y = win_size.h / base_h;
-  float scale = (scale_x + scale_y) / 2.0;
+  float scale = (scale_x + scale_y) / 2.0f;
 
-  int index = (int)(scale * FONT_VARIANTS / 2.0);
+  int index = (int)((scale - 1.0f) * (FONT_VARIANTS / 2) + (FONT_VARIANTS / 2));
+
   if(index < 0) index = 0;
   if(index >= FONT_VARIANTS) index = FONT_VARIANTS - 1;
 
-  index += FONT_TITLE_VARIANTS; // Adaugam offset pentru fonturile de titlu
-
   return fonts[index];
+}
+
+TTF_Font* getFontForWindowTitle(AbsoluteSize win_size) {
+  float base_w = 1280.0f;
+  float base_h = 720.0f;
+  float scale_x = win_size.w / base_w;
+  float scale_y = win_size.h / base_h;
+  float scale = (scale_x + scale_y) / 2.0f;
+
+  int index = (int)((scale - 1.0f) * (FONT_VARIANTS / 2) + (FONT_VARIANTS / 2));
+
+  if(index < 0) index = 0;
+  if(index >= FONT_VARIANTS) index = FONT_VARIANTS - 1;
+
+  return fonts[index + 2];
 }
 
 void set_render_color(SDL_Renderer* renderer, SDL_Color color) {
@@ -215,7 +215,8 @@ void afiseaza_instructiuni(SDL_Renderer* renderer, TTF_Font* font, AbsoluteSize 
   render_text(renderer, font, "Ai 5 incercari gresite pentru fiecare nivel.", x, y + line_height, COLOR_TEXT);
   render_text(renderer, font, "Daca gresesti, ramai pe acelasi nivel.", x, y + 2 * line_height, COLOR_TEXT);
   render_text(renderer, font, "Daca te intorci la meniu, progresul se pierde.", x, y + 3 * line_height, COLOR_TEXT);
-  render_text(renderer, font, "Poti consulta si sectiunea de notiuni teoretice din meniu.", x, y + 4 * line_height, COLOR_TEXT);
+  render_text(renderer, font, "Poti apasa SPACE sau ENTER pentru a continua.", x, y + 4 * line_height, COLOR_TEXT);
+  render_text(renderer, font, "Poti consulta si sectiunea de notiuni teoretice din meniu.", x, y + 5 * line_height, COLOR_TEXT);
   render_text(renderer, font, "Apasa ESC pentru a te intoarce in meniu.", x, y + 6 * line_height, COLOR_TEXT);
 
   SDL_RenderPresent(renderer);

@@ -1,8 +1,17 @@
 #pragma once
 
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include <stdbool.h>
+
+#include "ui.h"
+#include "style.h"
 #include "types.h"
+#include "list.h"
+#include "utils.h"
 
 #define DEFAULT_WIDTH 1280
 #define DEFAULT_HEIGHT 720
@@ -28,14 +37,9 @@
 #define IMG_MIN_H 100
 #define IMG_MAX_H 600
 
-// Setari pentru marimea fontului
-#define FONT_SCALE_DIVISOR 32
-#define FONT_MIN_SIZE 18
-#define FONT_MAX_SIZE 36
-
 // Fonturi
 #define FONT_PATH "assets/fonts/DejaVuSans.ttf"
-#define FONT_VARIANTS 6
+#define FONT_VARIANTS 10
 #define FONT_TITLE_VARIANTS 2
 
 extern TTF_Font *fonts[FONT_VARIANTS + FONT_TITLE_VARIANTS];

@@ -1,7 +1,10 @@
 #pragma once
 
-#include "cJSON.h"
 #include "types.h"
+#include "cJSON.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 Nod* creare_nod(const char* hint, const char* answer);
 void adauga_nod_final(Nod** cap, const char* hint, const char* answer);

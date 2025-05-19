@@ -56,7 +56,7 @@ int main(int argc, char* argv[]) {
     while (running) {
       int mouse_x, mouse_y;
       SDL_GetMouseState(&mouse_x, &mouse_y);
-  
+
       // Verificare dimensiuni fereastra
       SDL_GetRendererOutputSize(renderer, &win_size.w, &win_size.h);
 
@@ -65,6 +65,13 @@ int main(int argc, char* argv[]) {
       TTF_Font *font_title = getFontForWindowTitle(win_size);
   
       while (SDL_PollEvent(&event)) {
+          // Verificare dimensiuni fereastra
+          SDL_GetRendererOutputSize(renderer, &win_size.w, &win_size.h);
+
+          // Font dinamic
+          font = getFontForWindow(win_size);
+          font_title = getFontForWindowTitle(win_size);
+
           if (event.type == SDL_QUIT) running = false;
   
           switch (stare) {
@@ -134,7 +141,7 @@ int main(int argc, char* argv[]) {
               Nod* lista = incarca_intrebari_din_json(path);
               Nod* curent = lista;
               while (curent && (stare == PARTEA_I || stare == PARTEA_II)) {
-                  joc_pe_nivel(renderer, font, win_size, curent, &stare);
+                  joc_pe_nivel(renderer, font, font_title, win_size, curent, &stare);
                   if ((stare == PARTEA_I || stare == PARTEA_II) && curent->next) {
                       curent = curent->next;
                   } else {

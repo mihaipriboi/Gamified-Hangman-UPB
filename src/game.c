@@ -9,7 +9,7 @@
 #include "utils.h"
 #include "list.h"
 
-void joc_pe_nivel(SDL_Renderer* renderer, TTF_Font* font, AbsoluteSize win_size, Nod* nivel, StareJoc* stare) {
+void joc_pe_nivel(SDL_Renderer* renderer, TTF_Font* font, TTF_Font* font_title, AbsoluteSize win_size, Nod* nivel, StareJoc* stare) {
   bool guessed[26] = {false};
   int gresite = 0;
   char display[128];
@@ -28,11 +28,25 @@ void joc_pe_nivel(SDL_Renderer* renderer, TTF_Font* font, AbsoluteSize win_size,
     SDL_GetRendererOutputSize(renderer, &win_size.w, &win_size.h);
     font = getFontForWindow(win_size);
 
-    Buton next_btn = {get_scaled_rect(win_size, (RelativeRect){CENTER_X, 0.85f, 0.3f, 0.08f}), "Nivelul urmator"};
-    Buton retry_btn = {get_scaled_rect(win_size, (RelativeRect){0.05f, 0.85f, 0.25f, 0.08f}), "Reincearca"};
-    Buton menu_btn  = {get_scaled_rect(win_size, (RelativeRect){0.35f, 0.85f, 0.3f, 0.08f}), "Inapoi la meniu"};
+    Buton next_btn = {get_scaled_rect(win_size, (RelativeRect){CENTER_X, 0.9f, 0.2f, 0.07f}), "Nivelul urmator"};
+    Buton retry_btn = {get_scaled_rect(win_size, (RelativeRect){0.15f, 0.9f, 0.2f, 0.07f}), "Reincearca"};
+    Buton menu_btn  = {get_scaled_rect(win_size, (RelativeRect){0.85f, 0.9f, 0.2f, 0.07f}), "Inapoi la meniu"};
+
+    // Verificare dimensiuni fereastra
+    SDL_GetRendererOutputSize(renderer, &win_size.w, &win_size.h);
+
+    // Font dinamic
+    font = getFontForWindow(win_size);
+    font_title = getFontForWindowTitle(win_size);
 
     while (SDL_PollEvent(&event)) {
+      // Verificare dimensiuni fereastra
+      SDL_GetRendererOutputSize(renderer, &win_size.w, &win_size.h);
+
+      // Font dinamic
+      font = getFontForWindow(win_size);
+      font_title = getFontForWindowTitle(win_size);
+
       if (event.type == SDL_QUIT) {
         *stare = IESIRE;
         return;
@@ -40,6 +54,9 @@ void joc_pe_nivel(SDL_Renderer* renderer, TTF_Font* font, AbsoluteSize win_size,
       if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE) {
         *stare = MENIU;
         return;
+      }
+      if (event.type == SDL_KEYDOWN && (event.key.keysym.sym == SDLK_SPACE || event.key.keysym.sym == SDLK_RETURN) && corect) {
+        in_nivel = false;
       }
       if (!corect && !pierdut && event.type == SDL_TEXTINPUT) {
         char litera = tolower(event.text.text[0]);
@@ -95,7 +112,7 @@ void joc_pe_nivel(SDL_Renderer* renderer, TTF_Font* font, AbsoluteSize win_size,
       SDL_DestroyTexture(texture);
     }
 
-    render_text_relative(renderer, font, win_size, display, (RelativePos){CENTER_X, 0.7f}, COLOR_TEXT);
+    render_text_relative(renderer, font_title, win_size, display, (RelativePos){CENTER_X, 0.65f}, COLOR_TEXT);
 
     if (is_word_guessed(nivel->answer, display)) {
       corect = true;

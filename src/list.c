@@ -1,5 +1,8 @@
 #include "types.h"
 #include "cJSON.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 Nod* creare_nod(const char* hint, const char* answer) {
   Nod* nod = (Nod*)malloc(sizeof(Nod));
