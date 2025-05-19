@@ -30,20 +30,23 @@ int main(int argc, char* argv[]) {
 
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    TTF_Font* font = TTF_OpenFont("assets/fonts/DejaVuSans.ttf", 24);
-    if (!font) return 1;
+    loadFonts();
 
     Buton butoane[] = {
-        {{300, 120, 200, 50}, "Partea I"},
-        {{300, 190, 200, 50}, "Partea II"},
-        {{300, 260, 200, 50}, "Instructiuni"},
-        {{300, 330, 200, 50}, "Documentatie"},
-        {{300, 400, 200, 50}, "Iesire"}
+        {NULL_RECT, "Instructiuni"},
+        {NULL_RECT, "Partea I"},
+        {NULL_RECT, "Partea II"},
+        {NULL_RECT, "Notiuni Teoretice"},
+        {NULL_RECT, "Iesire"}
     };
 
-    Buton doc_but1 = {{100, 180, 200, 50}, "Partea I"};
-    Buton doc_but2 = {{100, 260, 200, 50}, "Partea II"};
-    Buton back_btn = {{100, 460, 250, 50}, "Inapoi la meniu"};
+    int buton_stare[] = {INSTRUCTIUNI, PARTEA_I, PARTEA_II, DOCUMENTATIE_SELECT, IESIRE};
+
+    Buton doc_but1 = {NULL_RECT, "Partea I"};
+    Buton doc_but2 = {NULL_RECT, "Partea II"};
+    Buton back_btn = {NULL_RECT, "Inapoi la meniu"};
+    Buton before_btn = {NULL_RECT, "Inapoi"};
+    Buton next_btn = {NULL_RECT, "Inainte"};
 
     StareJoc stare = MENIU;
     bool running = true;
@@ -56,6 +59,10 @@ int main(int argc, char* argv[]) {
   
       // Verificare dimensiuni fereastra
       SDL_GetRendererOutputSize(renderer, &win_size.w, &win_size.h);
+
+      // Font dinamic
+      TTF_Font *font = getFontForWindow(win_size);
+      TTF_Font *font_title = getFontForWindowTitle(win_size);
   
       while (SDL_PollEvent(&event)) {
           if (event.type == SDL_QUIT) running = false;
@@ -65,11 +72,8 @@ int main(int argc, char* argv[]) {
                   if (event.type == SDL_MOUSEBUTTONDOWN) {
                       for (int i = 0; i < 5; i++) {
                           if (mouse_over(butoane[i].rect, mouse_x, mouse_y)) {
-                              if (i == 0) stare = PARTEA_I;
-                              if (i == 1) stare = PARTEA_II;
-                              if (i == 2) stare = INSTRUCTIUNI;
-                              if (i == 3) stare = DOCUMENTATIE_SELECT;
-                              if (i == 4) stare = IESIRE;
+                              stare = buton_stare[i];
+                              break;
                           }
                       }
                   }
@@ -80,6 +84,9 @@ int main(int argc, char* argv[]) {
                       if (mouse_over(doc_but1.rect, mouse_x, mouse_y)) stare = DOCUMENTATIE_PARTE1;
                       if (mouse_over(doc_but2.rect, mouse_x, mouse_y)) stare = DOCUMENTATIE_PARTE2;
                   }
+                  if(event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE) {
+                    stare = MENIU;
+                  }    
                   break;
   
               case DOCUMENTATIE_PARTE1:
@@ -110,21 +117,21 @@ int main(int argc, char* argv[]) {
               break;
   
           case DOCUMENTATIE_SELECT:
-              afiseaza_documentatie_select(renderer, font, win_size, doc_but1, doc_but2, mouse_x, mouse_y);
+              afiseaza_documentatie_select(renderer, font, win_size, &doc_but1, &doc_but2, mouse_x, mouse_y);
               break;
   
           case DOCUMENTATIE_PARTE1:
-              afiseaza_documentatie_parte(renderer, font, win_size, 1, back_btn, mouse_x, mouse_y, &stare);
+              afiseaza_documentatie_parte(renderer, font, font_title, win_size, 1, back_btn, before_btn, next_btn, mouse_x, mouse_y, &stare);
               break;
   
           case DOCUMENTATIE_PARTE2:
-              afiseaza_documentatie_parte(renderer, font, win_size, 2, back_btn, mouse_x, mouse_y, &stare);
+              afiseaza_documentatie_parte(renderer, font, font_title, win_size, 2, back_btn, before_btn, next_btn, mouse_x, mouse_y, &stare);
               break;
   
           case PARTEA_I:
           case PARTEA_II: {
-              const char* path = (stare == PARTEA_I) ? "data/intrebari_partea1.txt" : "data/intrebari_partea2.txt";
-              Nod* lista = incarca_intrebari_din_fisier(path);
+              const char* path = (stare == PARTEA_I) ? "data/intrebari_partea1.json" : "data/intrebari_partea2.json";
+              Nod* lista = incarca_intrebari_din_json(path);
               Nod* curent = lista;
               while (curent && (stare == PARTEA_I || stare == PARTEA_II)) {
                   joc_pe_nivel(renderer, font, win_size, curent, &stare);
@@ -135,7 +142,9 @@ int main(int argc, char* argv[]) {
                   }
               }
               elibereaza_lista(&lista);
-              stare = MENIU;
+              if(stare == PARTEA_I || stare == PARTEA_II) {
+                  stare = MENIU;
+              }
               break;
           }
   
@@ -146,7 +155,7 @@ int main(int argc, char* argv[]) {
   }  
 
     SDL_StopTextInput();
-    TTF_CloseFont(font);
+    unloadFonts();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     TTF_Quit();

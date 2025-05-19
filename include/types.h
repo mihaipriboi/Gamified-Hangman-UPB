@@ -26,6 +26,8 @@ typedef struct {
   const char* text;
 } Buton;
 
+#define NULL_RECT {0, 0, 0, 0}
+
 typedef struct {
   float x, y, w, h; // valori relative (0.0 - 1.0)
 } RelativeRect;

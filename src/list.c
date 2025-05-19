@@ -1,4 +1,5 @@
 #include "types.h"
+#include "cJSON.h"
 
 Nod* creare_nod(const char* hint, const char* answer) {
   Nod* nod = (Nod*)malloc(sizeof(Nod));
@@ -50,22 +51,45 @@ Nod* incarca_intrebari_din_fisier(const char* nume_fisier) {
   return cap;
 }
 
-// Nod* creare_lista_demo_parte1() {
-//     Nod* cap = NULL;
-//     adauga_nod_final(&cap, "Este procesul de optimizare pentru motoare de cautare", "seo");
-//     adauga_nod_final(&cap, "Element multimedia utilizat pe web", "video");
-//     adauga_nod_final(&cap, "Platforma deschisa pentru colaborare", "github");
-//     adauga_nod_final(&cap, "Instrument de analiza pentru site-uri", "analytics");
-//     adauga_nod_final(&cap, "Format universal de fisier", "pdf");
-//     return cap;
-// }
+Nod* incarca_intrebari_din_json(const char *filename) {
+  FILE *file = fopen(filename, "rb");
+  if(!file) {
+    printf("Eroare la deschiderea fisierului JSON: %s\n", filename);
+    return NULL;
+  }
 
-// Nod* creare_lista_demo_parte2() {
-//     Nod* cap = NULL;
-//     adauga_nod_final(&cap, "Procesul de transformare a datelor brute", "cleaning");
-//     adauga_nod_final(&cap, "Tehnica de combinare a seturilor de date", "merging");
-//     adauga_nod_final(&cap, "Reprezentarea grafica a datelor", "chart");
-//     adauga_nod_final(&cap, "Fisiere CSV sunt exemple de date __", "structurate");
-//     adauga_nod_final(&cap, "Evaluarea datelor cu privire la moralitate", "etica");
-//     return cap;
-// }
+  fseek(file, 0, SEEK_END);
+  long len = ftell(file);
+  fseek(file, 0, SEEK_SET);
+
+  char *data = (char *)malloc(len + 1);
+  fread(data, 1, len, file);
+  data[len] = '\0';
+  fclose(file);
+
+  cJSON *json = cJSON_Parse(data);
+  free(data);
+
+  if(!json) {
+    printf("Eroare la parsarea JSON-ului.\n");
+    return NULL;
+  }
+
+  cJSON *questions = cJSON_GetObjectItemCaseSensitive(json, "questions");
+  cJSON *question;
+
+  Nod* cap = NULL;
+
+  cJSON_ArrayForEach(question, questions) {
+    cJSON *hint = cJSON_GetObjectItemCaseSensitive(question, "hint");
+    cJSON *answer = cJSON_GetObjectItemCaseSensitive(question, "answer");
+
+    if(cJSON_IsString(hint) && cJSON_IsString(answer)) {
+      adauga_nod_final(&cap, hint->valuestring, answer->valuestring);
+    }
+  }
+
+  cJSON_Delete(json);
+  
+  return cap;
+}
