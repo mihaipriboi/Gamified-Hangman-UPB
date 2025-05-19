@@ -13,8 +13,10 @@
 
 #ifdef _WIN32
   #define FONT_PATH_BASE "../assets/fonts/"
+  #define DATA_PATH_BASE "../data/"
 #else
   #define FONT_PATH_BASE "assets/fonts/"
+  #define DATA_PATH_BASE "data/"
 #endif
 
 TTF_Font *fonts[FONT_VARIANTS + FONT_TITLE_VARIANTS];
@@ -26,7 +28,7 @@ void loadFonts() {
         char path[256];
         snprintf(path, sizeof(path), "%sDejaVuSans.ttf", FONT_PATH_BASE);
         fonts[i] = TTF_OpenFont(path, font_sizes[i]);
-        
+
         if(!fonts[i]) {
             printf("Eroare la incarcarea fontului %d: %s\n", font_sizes[i], TTF_GetError());
             exit(1);
@@ -241,7 +243,8 @@ void afiseaza_documentatie_parte(SDL_Renderer* renderer, TTF_Font* font, TTF_Fon
   char titluri[100][128];
   char texte[100][1024];
 
-  const char* filename = (parte == 1) ? "data/documentatie_partea1.json" : "data/documentatie_partea2.json";
+  char filename[256];
+  snprintf(filename, sizeof(filename), "%sdocumentatie_partea%d.json", DATA_PATH_BASE, (parte == 1) ? 1 : 2);
   int nr = citeste_documentatie_din_json(filename, titluri, texte, 100);
 
   if(index >= nr) index = nr - 1;
