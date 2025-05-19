@@ -14,6 +14,13 @@
 #include "utils.h"
 #include "game.h"
 
+#ifdef _WIN32
+  #define DATA_PATH_BASE "../data/"
+#else
+  #define DATA_PATH_BASE "data/"
+#endif
+
+
 int main(int argc, char* argv[]) {
     (void)argc;  // Eliminare avertizari de compilare
     (void)argv;
@@ -137,7 +144,9 @@ int main(int argc, char* argv[]) {
   
           case PARTEA_I:
           case PARTEA_II: {
-              const char* path = (stare == PARTEA_I) ? "../data/intrebari_partea1.json" : "../data/intrebari_partea2.json";
+              char path[256];
+              snprintf(path, sizeof(path), "%sintrebari_partea%d.json", DATA_PATH_BASE, (stare == PARTEA_I) ? 1 : 2);
+
               Nod* lista = incarca_intrebari_din_json(path);
               Nod* curent = lista;
               while (curent && (stare == PARTEA_I || stare == PARTEA_II)) {

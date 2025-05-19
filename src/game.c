@@ -9,6 +9,12 @@
 #include "utils.h"
 #include "list.h"
 
+#ifdef _WIN32
+  #define ASSETS_PATH_BASE "../assets/images/"
+#else
+  #define ASSETS_PATH_BASE "assets/images/"
+#endif
+
 void joc_pe_nivel(SDL_Renderer* renderer, TTF_Font* font, TTF_Font* font_title, AbsoluteSize win_size, Nod* nivel, StareJoc* stare) {
   bool guessed[26] = {false};
   int gresite = 0;
@@ -96,11 +102,11 @@ void joc_pe_nivel(SDL_Renderer* renderer, TTF_Font* font, TTF_Font* font_title, 
     render_text_relative(renderer, font, win_size, "Hint:", (RelativePos){CENTER_X, 0.05f}, COLOR_TEXT);
     render_text_relative(renderer, font, win_size, nivel->hint, (RelativePos){CENTER_X, 0.1f}, COLOR_TEXT);
 
-    char path[64];
+    char path[256];
     if (gresite < MAX_GRESITE) {
-      snprintf(path, sizeof(path), "../assets/images/hangman_%d.bmp", gresite);
+        snprintf(path, sizeof(path), "%shangman_%d.bmp", ASSETS_PATH_BASE, gresite);
     } else {
-      snprintf(path, sizeof(path), "../assets/images/game_over.bmp");
+        snprintf(path, sizeof(path), "%sgame_over.bmp", ASSETS_PATH_BASE);
     }
 
     SDL_Surface* image = SDL_LoadBMP(path);

@@ -11,13 +11,22 @@
 #include "list.h"
 #include "utils.h"
 
+#ifdef _WIN32
+  #define FONT_PATH_BASE "../assets/fonts/"
+#else
+  #define FONT_PATH_BASE "assets/fonts/"
+#endif
+
 TTF_Font *fonts[FONT_VARIANTS + FONT_TITLE_VARIANTS];
 
 const int font_sizes[FONT_VARIANTS + FONT_TITLE_VARIANTS] = {12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56};
 
 void loadFonts() {
     for(int i = 0; i < FONT_VARIANTS + FONT_TITLE_VARIANTS; i++) {
-        fonts[i] = TTF_OpenFont("../assets/fonts/DejaVuSans.ttf", font_sizes[i]);
+        char path[256];
+        snprintf(path, sizeof(path), "%sDejaVuSans.ttf", FONT_PATH_BASE);
+        fonts[i] = TTF_OpenFont(path, font_sizes[i]);
+        
         if(!fonts[i]) {
             printf("Eroare la incarcarea fontului %d: %s\n", font_sizes[i], TTF_GetError());
             exit(1);
