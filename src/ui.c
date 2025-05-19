@@ -17,7 +17,7 @@ const int font_sizes[FONT_VARIANTS + FONT_TITLE_VARIANTS] = {12, 16, 20, 24, 28,
 
 void loadFonts() {
     for(int i = 0; i < FONT_VARIANTS + FONT_TITLE_VARIANTS; i++) {
-        fonts[i] = TTF_OpenFont("assets/fonts/DejaVuSans.ttf", font_sizes[i]);
+        fonts[i] = TTF_OpenFont("../assets/fonts/DejaVuSans.ttf", font_sizes[i]);
         if(!fonts[i]) {
             printf("Eroare la incarcarea fontului %d: %s\n", font_sizes[i], TTF_GetError());
             exit(1);

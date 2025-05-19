@@ -98,9 +98,9 @@ void joc_pe_nivel(SDL_Renderer* renderer, TTF_Font* font, TTF_Font* font_title, 
 
     char path[64];
     if (gresite < MAX_GRESITE) {
-      snprintf(path, sizeof(path), "assets/images/hangman_%d.bmp", gresite);
+      snprintf(path, sizeof(path), "../assets/images/hangman_%d.bmp", gresite);
     } else {
-      snprintf(path, sizeof(path), "assets/images/game_over.bmp");
+      snprintf(path, sizeof(path), "../assets/images/game_over.bmp");
     }
 
     SDL_Surface* image = SDL_LoadBMP(path);

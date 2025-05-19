@@ -137,7 +137,7 @@ int main(int argc, char* argv[]) {
   
           case PARTEA_I:
           case PARTEA_II: {
-              const char* path = (stare == PARTEA_I) ? "data/intrebari_partea1.json" : "data/intrebari_partea2.json";
+              const char* path = (stare == PARTEA_I) ? "../data/intrebari_partea1.json" : "../data/intrebari_partea2.json";
               Nod* lista = incarca_intrebari_din_json(path);
               Nod* curent = lista;
               while (curent && (stare == PARTEA_I || stare == PARTEA_II)) {
